@@ -11,7 +11,19 @@ const HomePage = () => {
 
     const globalStats = data?.data?.stats;
 
-    if(isFetching) return <div>Loading...</div>
+    if(isFetching) return(
+        <div class='containerL'>
+        <div class='loader'>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--text'></div>
+        </div>
+    </div>
+    )
     console.log(data);
     console.log(globalStats.total);
 

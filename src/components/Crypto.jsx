@@ -12,28 +12,49 @@ const Crypto = ({simplified}) =>{
 
   const count= simplified ? 10 : 100;
 
-  const { data:cryptoList, isFetching} = useGetCrytosQuery(count);
-  const[cryptos, setCryptos] = useState(undefined);
+  const { data:cryptosList, isFetching} = useGetCrytosQuery(count);
+  const[cryptos, setCryptos] = useState(cryptosList?.data?.coins);
   
-  
-  
-  
+  const[searchTerm, setSearchTerm] = useState('');
   useEffect(()=>{
-    setCryptos(cryptoList?.data?.coins);
+    // setCryptos(cryptoList?.data?.coins);
+    const filteredData = cryptosList?.data?.coins?.filter((coin)=>coin.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    setCryptos(filteredData);
+  },[cryptosList,searchTerm])
+  
+  // useEffect(()=>{
+  //   setCryptos(cryptoList?.data?.coins);
     
-  },[cryptoList])
+  // },[cryptoList])
   
   console.log(cryptos);
   
   if(isFetching) {
     console.log('loading');
-    return <div>Loading...</div>
+    return (
+    <div class='containerL'>
+        <div class='loader'>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--text'></div>
+        </div>
+    </div>
+  )
   }
-// else{
+  
+
 
   return (
     <>
-  
+    {!simplified &&(
+    <div className="search-crypto">
+      <Input placeholder='Seacrh Crypto'onChange={(e)=>setSearchTerm(e.target.value)}/>
+    </div>
+  )}
       <Row gutter={[32,32]} className='crypto-card-container'>
 
         {cryptos?.map((currency,key) => (
