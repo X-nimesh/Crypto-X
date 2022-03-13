@@ -13,17 +13,17 @@ const HomePage = () => {
     const globalStats = data?.data?.stats;
 
     if(isFetching) return(
-        <div class='containerL'>
-        <div class='loader'>
-          <div class='loader--dot'></div>
-          <div class='loader--dot'></div>
-          <div class='loader--dot'></div>
-          <div class='loader--dot'></div>
-          <div class='loader--dot'></div>
-          <div class='loader--dot'></div>
-          <div class='loader--text'></div>
+        <div className='containerL'>
+            <div className='loader'>
+                <div className='loader--dot'></div>
+                <div className='loader--dot'></div>
+                <div className='loader--dot'></div>
+                <div class='loader--dot'></div>
+                <div className='loader--dot'></div>
+                <div className='loader--dot'></div>
+                <div className='loader--text'></div>
+            </div>
         </div>
-    </div>
     )
     console.log(data);
     console.log(globalStats.total);
